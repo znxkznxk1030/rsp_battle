@@ -1,3 +1,36 @@
-<p>
-  battle works!
-</p>
+<div class="container"
+	fxLayout="column"
+	fxLayoutGap="10px">
+	<mat-card>
+		<mat-grid-list cols="3" rowHeight="100px">
+			<mat-grid-tile *ngFor="let card of cards" 
+				(click)="battleService.selectPlayerCard(card)">
+				<img height="100px" src={{card.image}}>
+				<mat-grid-tile-footer>
+					<h3 md-line>{{card.name}}</h3>
+				</mat-grid-tile-footer>
+			</mat-grid-tile>
+		</mat-grid-list>
+
+		<hr>
+
+		<button mat-button (click)="battleService.clickDrawingDone()">Done</button>
+		<button mat-button>Battle</button>
+		<button mat-button (click)="battleService.reset()">Reset</button>
+
+	</mat-card>
+
+	<h2>Your Deck</h2>
+	<mat-grid-list cols="3" rowHeight="100px">
+		<mat-grid-tile *ngFor="let card of player.selectedCards">
+			<img height="100px" src={{card.image}}>
+		</mat-grid-tile>
+	</mat-grid-list>
+
+	<h2>Oppenent Deck</h2>
+	<mat-grid-list cols="3" rowHeight="100px">
+		<mat-grid-tile *ngFor="let card of oppenent.selectedCards">
+			<img height="100px" src={{card.image}}>
+		</mat-grid-tile>
+	</mat-grid-list>
+</div>
